@@ -1,17 +1,36 @@
 <html>
 	<head>
 		<script src="https://unpkg.com/tram-one/dist/tram-one.umd.js"></script>
+		<script id="copy">
+			/**
+			 * This is the copy for the website
+			 * Edit the information here!
+			 */
+			const copy = {
+				title: 'Salud Consulting'
+			}
+		</script>
+		<script id="salud-title">
+			const saludTitle = () => {
+				const { registerHtml } = window['tram-one']
+				const html = registerHtml()
+				return () => {
+					return html`
+						<h1 class="saludTitle">${copy.title}</h1>
+					`
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<div class="app"></div>
 		<script>
 			const { registerHtml, start } = window['tram-one']
-			const html = registerHtml()
+			const html = registerHtml({'salud-title': saludTitle()})
 			const home = () => {
 				return html`
 					<main>
-						<h1> Salud Consulting </h1>
-						
+						<salud-title />
 						<p>
 							At Salud Consulting our mission is to help companies 
 							identify gaps in their business 
