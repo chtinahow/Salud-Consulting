@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<script src="https://unpkg.com/tram-one/dist/tram-one.umd.js"></script>
+	</head>
+	<body>
+		<div class="app"></div>
+		<script>
+			const { registerHtml, start } = window['tram-one']
+			const html = registerHtml()
+			const home = () => {
+				return html`
+					<main>
+						<h1> Salud Consulting </h1>
+						
+						<p>
+							At Salud Consulting our mission is to help companies 
+							identify gaps in their business 
+							and resolve those issues, hands on.
+						</p>
+					</main>
+				`
+			}
+			start('.app', home)
+		</script>
+	</body>
+</html>
