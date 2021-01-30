@@ -1,0 +1,20 @@
+{
+  "name": "salud-consulting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "publish:site": "surge ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chtinahow/Salud-Consulting.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chtinahow/Salud-Consulting/issues"
+  },
+  "homepage": "https://github.com/chtinahow/Salud-Consulting#readme"
+}
