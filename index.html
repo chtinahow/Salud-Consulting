@@ -4,10 +4,33 @@
 		<script id="copy">
 			/**
 			 * This is the copy for the website
-			 * Edit the information here!
+			 * Edit the text that appears on the website here!
 			 */
 			const copy = {
-				title: 'Salud Consulting'
+				title: 'Salud Consulting',
+				under_construction_banner: 'This site is currently under construction. Thank you for your patience.'
+			}
+		</script>
+		<style id="construction-banner-styles">
+			.construction-banner {
+				background-color: rgb(198, 198, 255);
+				border: solid 2px rgb(0, 0, 241);
+				border-radius: 5px;
+				padding: .4em;
+				text-align: center;
+			}
+		</style>
+		<script id="construction-banner">
+			const constructionBanner = () => {
+				const { registerHtml } = window['tram-one']
+				const html = registerHtml()
+				return () => {
+					return html `
+						<p class="construction-banner">
+							${copy.under_construction_banner}
+						</p>
+					`
+				}
 			}
 		</script>
 		<script id="salud-title">
@@ -26,10 +49,14 @@
 		<div class="app"></div>
 		<script>
 			const { registerHtml, start } = window['tram-one']
-			const html = registerHtml({'salud-title': saludTitle()})
+			const html = registerHtml({
+				'salud-title': saludTitle(),
+				'construction-banner': constructionBanner()
+			})
 			const home = () => {
 				return html`
 					<main>
+						<construction-banner />
 						<salud-title />
 						<p>
 							At Salud Consulting our mission is to help companies 
