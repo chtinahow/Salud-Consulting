@@ -1,82 +1,231 @@
 <html>
-	<head>
-		<!-- Meta tag to change how page looks on mobile-->
-		<meta name="viewport" content="initial-scale=1.0, maximum-scale=0.5, width=device-width">
 
-		<!-- Dependencies -->
-		<script src="https://unpkg.com/tram-one/dist/tram-one.umd.js"></script>
+<head>
+	<!-- Meta tag to change how page looks on mobile-->
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=0.5, width=device-width">
 
-		<!-- Title & Text for the Page (Can Edit) -->
-		<title>Salud Consulting LLC</title>
-		<script id="copy">
-			/**
-			 * This is the copy for the website
-			 * Edit the text that appears on the website here!
-			 */
-			const copy = {
-				title: 'Salud Consulting LLC',
-				under_construction_banner: 'This site is currently under construction. Thank you for your patience.'
-			}
-		</script>
+	<!-- Dependencies -->
+	<script src="https://unpkg.com/tram-one/dist/tram-one.umd.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 
-		<!-- Components for the Page -->
-		<style id="construction-banner-styles">
-			.construction-banner {
-				background-color: rgb(198, 198, 255);
-				border: solid 2px rgb(0, 0, 241);
-				border-radius: 5px;
-				padding: .4em;
-				text-align: center;
-			}
-		</style>
-		<script id="construction-banner">
-			const constructionBanner = () => {
-				const { registerHtml } = window['tram-one']
-				const html = registerHtml()
-				return () => {
-					return html `
-						<p class="construction-banner">
-							${copy.under_construction_banner}
-						</p>
-					`
-				}
-			}
-		</script>
-		<script id="salud-title">
-			const saludTitle = () => {
-				const { registerHtml } = window['tram-one']
-				const html = registerHtml()
-				return () => {
-					return html`
-						<h1 class="saludTitle">${copy.title}</h1>
-					`
-				}
-			}
-		</script>
-	</head>
+	<!-- Title & Text for the Page (Can Edit) -->
+	<title>Salud Consulting LLC</title>
+	<script id="copy">
+		/**
+		 * This is the copy for the website
+		 * Edit the text that appears on the website here!
+		 */
+		const copy = {
+			title: 'Salud Consulting LLC',
+			under_construction_banner: 'This site is currently under construction. Thank you for your patience.',
+			mission_statement: 'At Salud Consulting our mission is to help companies identify gaps in their business and resolve those issues, hands on.',
+			about_us_header: 'About Us',
+			contact_us_header: 'Contact Us',
+			description: 'Salud Consulting is a consulting firm with personnel who have experience in Quality Assurance, remediation, QA audits, Project management, Process engineering, manufacturing, aseptic fill finish, cybersecurity and EHS.',
+			experience_header: 'Experience',
+			experience_intro: 'Over 20 years of biopharm and pharmaceutical experience. Hands on experience in the following:',
+			experience_items: [
+				{ text: 'Process Engineering' },
+				{ text: 'Manufacturing (Upstream & Downstream)' },
+				{ text: 'Viral Inactivation' },
+				{ text: 'mAB' },
+				{ text: 'Asceptic Fill Finish' },
+				{ text: 'Remediation' },
+				{ text: 'Medical Devices' },
+				{ text: 'SOP Writing & Revision' },
+				{ text: 'Quality Assurance' },
+				{ text: 'Batch Records & Deviations' },
+				{ text: 'Training Personnel how to use Lab Equipment' },
+			],
+			companies_header: 'Companies We\'ve Worked With',
+			company_logos: [
+				{ graphic: '', alt: 'GSK' },
+				{ graphic: '', alt: 'Pfizer' },
+				{ graphic: '', alt: 'Thermofisher' },
+				{ graphic: '', alt: 'Regeneron' },
+				{ graphic: '', alt: 'Biovectra' },
+				{ graphic: '', alt: 'KBI biopharma' },
+				{ graphic: '', alt: 'Novavax' },
+				{ graphic: '', alt: 'SAIC' },
+				{ graphic: '', alt: 'Alkermes' },
+				{ graphic: '', alt: 'Pfizer India' },
+			],
+			services_header: 'Services',
+			services_items: [
+				{ label: 'Consulting', graphic: '' },
+				{ label: 'Project Mangement', graphic: '' },
+				{ label: 'Process Engineering', graphic: '' },
+				{ label: 'Remediation', graphic: '' },
+				{ label: 'EHS', graphic: '' },
+				{ label: 'Quality Assurance', graphic: '' },
+			],
+			contact_us_name_label: 'Name',
+			contact_us_email_address_label: 'Email Address',
+			contact_us_phone_number_label: 'Phone Number',
+			contact_us_requested_services_label: 'Requested Service(s)',
+			contact_us_requested_services: [
+				'Consulting & Advisory Support',
+				'Support Services'
+			],
+			contact_us_detailed_message_label: 'Detailed Message',
+			contact_us_submit_button_label: 'Submit',
+		}
+	</script>
 
-	<body>
-		<div class="app"></div>
-		<script>
-			const { registerHtml, start } = window['tram-one']
-			const html = registerHtml({
-				'salud-title': saludTitle(),
-				'construction-banner': constructionBanner()
-			})
-			const home = () => {
+	<!-- Styles for the entire page -->
+	<style id="page-style">
+		body {
+			margin: 1em auto;
+			max-width: 600px;
+		}
+	</style>
+
+	<!-- Components for the Page -->
+	<style id="construction-banner-styles">
+		.construction-banner {
+			text-align: center;
+			color: black;
+			margin-bottom: 1em;
+		}
+	</style>
+
+	<script id="construction-banner">
+		const constructionBanner = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return (props, children) => {
 				return html`
-					<main>
-						<construction-banner />
-						<salud-title />
-						<p>
-							At Salud Consulting our mission is to help companies
-							identify gaps in their business
-							and resolve those issues, hands on.
-						</p>
-					</main>
+					<div class="construction-banner toast toast-warning">
+						${children}
+					</div>
 				`
 			}
-			start('.app', home)
-		</script>
-	</body>
+		}
+	</script>
+	<script id="salud-title">
+		const saludTitle = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return (props, children) => {
+				return html`
+						<h1 class="salud-title">${children}</h1>
+					`
+			}
+		}
+	</script>
+	<script id="salud-header">
+		const saludHeader = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return (props, children) => {
+				return html`
+						<h2 class="salud-header">${children}</h2>
+					`
+			}
+		}
+	</script>
+	<script id="salud-banner-graphic">
+		const saludGraphic = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return ({alt}) => {
+				return html`
+						<img class="salud-banner-graphic" alt=${alt} />
+					`
+			}
+		}
+	</script>
+	<script id="salud-contact-form">
+		const saludContactForm = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return (props, children) => {
+				return html`
+					<div>
+						<div class="salud-contact-form form-group">
+							<label class="form-label" for="contact-name">${copy.contact_us_name_label}</label>
+							<input class="form-input" type="text" id="contact-name" placeholder="${copy.contact_us_name_label}" />
+						</div>
+						<div class="form-group">
+							<label class="form-label" for="contact-email">Address</label>
+							<input class="form-input" type="text" id="contact-address" placeholder="Address" />
+						</div>
+						<div class="form-group">
+							<label class="form-label" for="contact-email">${copy.contact_us_email_address_label}</label>
+							<input class="form-input" type="text" id="contact-email" placeholder="${copy.contact_us_email_address_label}" />
+						</div>
+						<div class="form-group">
+							<label class="form-label" for="contact-phone">${copy.contact_us_phone_number_label}</label>
+							<input class="form-input" type="text" id="contact-phone" placeholder="${copy.contact_us_phone_number_label}" />
+						</div>
+						<div class="form-group">
+							<label class="form-label" for="services">${copy.contact_us_requested_services_label}</label>
+							${copy.contact_us_requested_services.map(service => html`
+								<label class="form-checkbox">
+								<input type="checkbox" />
+								<i class="form-icon"></i>
+									${service}
+								</label>
+							`)}
+						</div>
+						<div class="form-group">
+							<label class="form-label" for="detailed-message">${copy.contact_us_detailed_message_label}</label>
+							<textarea class="form-input" id="detailed-message" placeholder="${copy.contact_us_detailed_message_label}" rows="3"></textarea>
+						</div>
+						<button class="btn btn-primary">${copy.contact_us_submit_button_label}</button>
+					</div>
+				`
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div class="app"></div>
+	<script>
+		const { registerHtml, start } = window['tram-one']
+		const html = registerHtml({
+			'construction-banner': constructionBanner(),
+			'salud-title': saludTitle(),
+			'salud-header': saludHeader(),
+			'salud-banner-graphic': saludGraphic(),
+			'salud-contact-form': saludContactForm(),
+		})
+		const home = () => {
+			return html`
+					<main>
+						<construction-banner>${copy.under_construction_banner}</construction-banner>
+						<salud-title>${copy.title}</salud-title>
+						<p>
+							${copy.mission_statement}
+						</p>
+						<salud-header>${copy.about_us_header}</salud-header>
+						<!-- <salud-banner-graphic /> -->
+						<p>
+							${copy.description}
+						</p>
+						<salud-header>${copy.experience_header}</salud-header>
+						<p>${copy.experience_intro}</p>
+						<ul>
+							${copy.experience_items.map(item => html`<li>${item.text}</l1>`)}
+						</ul>
+						<salud-header>${copy.companies_header}</salud-header>
+						<ul>
+							${copy.company_logos.map(company => html`<li>${company.alt}</l1>`)}
+						</ul>
+						<salud-header>${copy.services_header}</salud-header>
+						<ul>
+							${copy.services_items.map(service => html`<li>${service.label}</l1>`)}
+						</ul>
+						<salud-header>${copy.contact_us_header}</salud-header>
+						<salud-contact-form />
+					</main>
+				`
+		}
+		start('.app', home)
+	</script>
+</body>
+
 </html>

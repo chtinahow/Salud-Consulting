@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "npx serve .",
     "publish:site": "surge ."
   },
   "repository": {
