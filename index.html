@@ -10,6 +10,9 @@
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 
+	<!-- Fontawesome Icon Library -->
+	<script src="https://kit.fontawesome.com/deecad9010.js" crossorigin="anonymous"></script>
+
 	<!-- Title & Text for the Page (Can Edit) -->
 	<title>Salud Consulting LLC</title>
 	<script id="copy">
@@ -54,12 +57,13 @@
 			],
 			services_header: 'Services',
 			services_items: [
-				{ label: 'Consulting', graphic: '' },
-				{ label: 'Project Mangement', graphic: '' },
-				{ label: 'Process Engineering', graphic: '' },
-				{ label: 'Remediation', graphic: '' },
-				{ label: 'EHS', graphic: '' },
-				{ label: 'Quality Assurance', graphic: '' },
+				{ label: 'Consulting', graphic: 'fa-handshake' },
+				{ label: 'Project Mangement', graphic: 'fa-chart-pie' },
+				{ label: 'Process Engineering', graphic: 'fa-calendar-week' },
+				{ label: 'Remediation', graphic: 'fa-tools' },
+				{ label: 'EHS', graphic: 'fa-user-hard-hat' },
+				{ label: 'Quality Assurance', graphic: 'fa-clipboard-list-check' },
+				{ label: 'Cybersecurity', graphic: 'fa-fingerprint' },
 			],
 			contact_us_name_label: 'Name',
 			contact_us_email_address_label: 'Email Address',
@@ -111,6 +115,28 @@
 			return (props, children) => {
 				return html`
 						<h1 class="salud-title">${children}</h1>
+					`
+			}
+		}
+	</script>
+	<style>
+		.salud-icon-item-icon { font-size: 4em; }
+		.salud-icon-item {
+			padding: 1em;
+			min-width: 177;
+			text-align: center;
+		}
+	</style>
+	<script id="salud-icon-item">
+		const saludIconItem = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return ({icon, label}, children) => {
+				return html`
+						<div class="salud-icon-item">
+							<i class="salud-icon-item-icon fad ${icon}"></i>
+							<p>${label}</p>
+						</div>
 					`
 			}
 		}
@@ -192,10 +218,12 @@
 			'salud-header': saludHeader(),
 			'salud-banner-graphic': saludGraphic(),
 			'salud-contact-form': saludContactForm(),
+			'salud-icon-item': saludIconItem(),
 		})
 		const home = () => {
 			return html`
 					<main>
+						<i class="fad fa-handshake"></i>
 						<construction-banner>${copy.under_construction_banner}</construction-banner>
 						<salud-title>${copy.title}</salud-title>
 						<p>
@@ -216,9 +244,9 @@
 							${copy.company_logos.map(company => html`<li>${company.alt}</l1>`)}
 						</ul>
 						<salud-header>${copy.services_header}</salud-header>
-						<ul>
-							${copy.services_items.map(service => html`<li>${service.label}</l1>`)}
-						</ul>
+						<div style="display: flex; flex-wrap: wrap; justify-content: space-around;"> <!-- TODO: Make real component later -->
+							${copy.services_items.map(service => html`<salud-icon-item label=${service.label} icon=${service.graphic}/>`)}
+						</div>
 						<salud-header>${copy.contact_us_header}</salud-header>
 						<salud-contact-form />
 					</main>
