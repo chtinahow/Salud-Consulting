@@ -92,6 +92,7 @@
 			text-align: center;
 			color: black;
 			margin-bottom: 1em;
+			margin-top: 5em;
 		}
 	</style>
 
@@ -107,6 +108,49 @@
 				`
 			}
 		}
+	</script>
+
+	<style id="sticky-nav-bar-styles">
+		.salud-sticky-nav-bar {
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			margin-bottom: 0.8em;
+			position: fixed; /* Set the navbar to fixed position */
+			top: 0; /* Position the navbar at the top of the page */
+			width: 600px;/* size of page */
+			padding: 0.5em;
+			background-color: #ffffff;
+  		z-index: 1;
+			box-shadow: 0 0.4em 0.4em -4px rgb(0 0 0 / 50%);
+		}
+
+		.nav-link {
+			padding: 0.2em
+		}
+
+		.salud-logo {
+			width: 2em;
+			height: 2em;
+		}
+	</style>
+	<script id="sticky-nav-bar">
+		const saludStickyNavBar = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return (props, children) => {
+				return html `
+					<nav class="salud-sticky-nav-bar">
+						<img class="salud-logo" src="https://raw.githubusercontent.com/Tram-One/tram-logo/master/v3/color_64x64.png"></img>
+						<a class="nav-link" href="#about-us">${copy.about_us_header}</a>
+						<a class="nav-link" href="#experience">${copy.experience_header}</a>
+						<a class="nav-link" href="#services">${copy.services_header}</a>
+						<a class="nav-link" href="#contact-us">${copy.contact_us_header}</a>
+					</nav>
+				`
+			}
+		}
+	</script>
 	</script>
 	<script id="salud-title">
 		const saludTitle = () => {
@@ -147,7 +191,7 @@
 			const html = registerHtml()
 			return (props, children) => {
 				return html`
-						<h2 class="salud-header">${children}</h2>
+						<h2 id=${props.id} class="salud-header">${children}</h2>
 					`
 			}
 		}
@@ -214,6 +258,7 @@
 		const { registerHtml, start } = window['tram-one']
 		const html = registerHtml({
 			'construction-banner': constructionBanner(),
+			'salud-sticky-nav-bar': saludStickyNavBar(),
 			'salud-title': saludTitle(),
 			'salud-header': saludHeader(),
 			'salud-banner-graphic': saludGraphic(),
@@ -224,16 +269,17 @@
 			return html`
 					<main>
 						<construction-banner>${copy.under_construction_banner}</construction-banner>
-						<salud-title>${copy.title}</salud-title>
+						
+						<salud-sticky-nav-bar></salud-sticky-nav-bar>
 						<p>
 							${copy.mission_statement}
 						</p>
-						<salud-header>${copy.about_us_header}</salud-header>
+						<salud-header id="about-us">${copy.about_us_header}</salud-header>
 						<!-- <salud-banner-graphic /> -->
 						<p>
 							${copy.description}
 						</p>
-						<salud-header>${copy.experience_header}</salud-header>
+						<salud-header id="experience">${copy.experience_header}</salud-header>
 						<p>${copy.experience_intro}</p>
 						<ul>
 							${copy.experience_items.map(item => html`<li>${item.text}</l1>`)}
@@ -242,11 +288,11 @@
 						<ul>
 							${copy.company_logos.map(company => html`<li>${company.alt}</l1>`)}
 						</ul>
-						<salud-header>${copy.services_header}</salud-header>
+						<salud-header id="services">${copy.services_header}</salud-header>
 						<div style="display: flex; flex-wrap: wrap; justify-content: space-around;"> <!-- TODO: Make real component later -->
 							${copy.services_items.map(service => html`<salud-icon-item label=${service.label} icon=${service.graphic}/>`)}
 						</div>
-						<salud-header>${copy.contact_us_header}</salud-header>
+						<salud-header id="contact-us">${copy.contact_us_header}</salud-header>
 						<salud-contact-form />
 					</main>
 				`
