@@ -75,7 +75,7 @@
 			],
 			contact_us_detailed_message_label: 'Detailed Message',
 			contact_us_submit_button_label: 'Submit',
-			sticky_footer: 'Salud Consulting LLC, All rights reserved.',
+			sticky_footer: '© 2021 Salud Consulting LLC, All rights reserved.',
 			footer_address_label: 'Corporate Headquarters',
 			footer_address_street_address_1:'5457 Twin Knolls Rd suite 300',
 			footer_address_street_address_2:'Columbia, MD 21045',
@@ -103,7 +103,6 @@
 			z-index: 2; /* place banner in front of sticky-nav */
 		}
 	</style>
-
 	<script id="construction-banner">
 		const constructionBanner = () => {
 			const { registerHtml } = window['tram-one']
@@ -117,7 +116,6 @@
 			}
 		}
 	</script>
-
 	<style id="sticky-nav-bar-styles">
 		.salud-sticky-nav-bar {
 			display: flex;
@@ -186,6 +184,7 @@
 	<style id=salud-logo-styles>
 		.salud-logo {
 			grid-area: logo;
+			align-self: center;
 		}
 	</style>
 	<script id=salud-logo>
@@ -218,7 +217,7 @@
 			}
 		}
 	</script>
-	<style>
+	<style id="salud-icon-item-styles">
 		.salud-icon-item-icon { font-size: 4em; }
 		.salud-icon-item {
 			padding: 1em;
@@ -325,13 +324,13 @@
 	<style id="salud-footer-styles">
 		.salud-footer {
 			display: grid;
-			grid-template-columns: 50px 1fr;
+			grid-template-columns: 1fr 1fr 4fr 1fr;
 			grid-template-rows: auto;
 			grid-template-areas:
-				"logo 			 	 title"
-				"address 		 address"
-				"copywrite copywrite";
-
+				". logo 			 	 title ."
+				". address 		 address ."
+				". copywrite copywrite .";
+			row-gap: 0.5em;
 			color: #fff;
 			position: relative;
 			bottom: 0;
@@ -351,7 +350,6 @@
 		}
 
 		.salud-footer-copywrite {
-			text-align: center;
 			grid-area: copywrite;
 		}
 	</style>
@@ -364,7 +362,7 @@
 			return (props, children) => {
 				return html`
 					<footer class="salud-footer">
-						<salud-logo size="32px" />
+						<salud-logo size="50px" />
 						<div class="salud-footer-title">${copy.title}</div>
 						<div class="salud-footer-address">
 							<div>${copy.footer_address_label}</div>
