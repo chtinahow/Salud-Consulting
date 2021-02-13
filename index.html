@@ -75,13 +75,17 @@
 			],
 			contact_us_detailed_message_label: 'Detailed Message',
 			contact_us_submit_button_label: 'Submit',
+			sticky_footer: 'Salud Consulting LLC, All rights reserved.',
+			footer_address_label: 'Corporate Headquarters',
+			footer_address_street_address_1:'5457 Twin Knolls Rd suite 300',
+			footer_address_street_address_2:'Columbia, MD 21045',
 		}
 	</script>
 
 	<!-- Styles for the entire page -->
 	<style id="page-style">
 		body {
-			margin: 1em auto;
+			margin: 0 auto;
 			max-width: 600px;
 		}
 	</style>
@@ -92,7 +96,11 @@
 			text-align: center;
 			color: black;
 			margin-bottom: 1em;
-			margin-top: 5em;
+			position: absolute;
+			top: 0;
+			width: 600px;
+			margin-top: 0.5em;
+			z-index: 2; /* place banner in front of sticky-nav */
 		}
 	</style>
 
@@ -115,14 +123,13 @@
 			display: flex;
 			flex-wrap: nowrap;
 			justify-content: space-between;
-			margin-bottom: 0.8em;
 			position: fixed; /* Set the navbar to fixed position */
 			top: 0; /* Position the navbar at the top of the page */
-			width: 600px;/* size of page */
+			width: 600px; /* size of page */
 			padding: 0.5em;
 			background-color: #ffffff;
-  		z-index: 1;
 			box-shadow: 0 0.4em 0.4em -4px rgb(0 0 0 / 50%);
+			z-index: 1; /* place sticky-nav in front of form inputs */
 		}
 
 		.nav-link {
@@ -151,6 +158,54 @@
 			}
 		}
 	</script>
+	<style id="sticky-footer-bar-styles">
+		.salud-sticky-footer-bar {
+			position: fixed; /* Set the navbar to fixed position */
+			bottom: 0; /* Position the navbar at the top of the page */
+			width: 600px; /* size of page */
+			padding: 0.5em;
+			background-color: #ffffff;
+			box-shadow: 0 -0.4em 0.4em -4px rgb(0 0 0 / 50%);
+			text-align: center;
+			z-index: 1; /* place sticky-footer in front of form inputs */
+		}
+	</style>
+	<script id="sticky-footer-bar">
+		const saludStickyFooterBar = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return (props, children) => {
+				return html `
+					<footer class="salud-sticky-footer-bar">
+						${copy.sticky_footer}
+					</footer>
+				`
+			}
+		}
+	</script>
+	<style id=salud-logo-styles>
+		.salud-logo {
+			grid-area: logo;
+		}
+	</style>
+	<script id=salud-logo>
+		const saludLogo = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return (props, children) => {
+				const sizeStyle = `
+					width: ${props.size};
+					height: ${props.size};
+				`
+				return html`
+						<img 
+							style=${sizeStyle}
+							class="salud-logo" 
+							src="https://raw.githubusercontent.com/Tram-One/tram-logo/master/v3/color_64x64.png"
+						/>
+					`
+			}
+		}
 	</script>
 	<script id="salud-title">
 		const saludTitle = () => {
@@ -250,6 +305,78 @@
 			}
 		}
 	</script>
+	<style id="salud-page-content-styles">
+		.salud-page-content {
+			margin-top: 4em; /* put space at the top of the page for the header */
+			margin-bottom: 2em; /* put space at the bottom of the page for the footer */
+		}
+	</style>
+	<script id="salud-page-content">
+			const saludPageContent = () => {
+				const { registerHtml } = window['tram-one']
+				const html = registerHtml()
+				return (props, children) => {
+					return html`
+						<article class="salud-page-content">${children}</article>
+					`
+				}
+			}
+	</script>
+	<style id="salud-footer-styles">
+		.salud-footer {
+			display: grid;
+			grid-template-columns: 50px 1fr;
+			grid-template-rows: auto;
+			grid-template-areas:
+				"logo 			 	 title"
+				"address 		 address"
+				"copywrite copywrite";
+
+			color: #fff;
+			position: relative;
+			bottom: 0;
+			width: 600px;
+			background-color: #5755d9;
+			z-index: 2; /* place the footer in front of the stick footer */
+			padding: 1em 1em 0 1em;
+		}
+
+		.salud-footer-title {
+			grid-area: title;
+			font-size: 2em;
+		}
+
+		.salud-footer-address {
+			grid-area: address;
+		}
+
+		.salud-footer-copywrite {
+			text-align: center;
+			grid-area: copywrite;
+		}
+	</style>
+	<script id=salud-footer>
+		const saludFooter = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml({
+				'salud-logo': saludLogo()
+			})
+			return (props, children) => {
+				return html`
+					<footer class="salud-footer">
+						<salud-logo size="32px" />
+						<div class="salud-footer-title">${copy.title}</div>
+						<div class="salud-footer-address">
+							<div>${copy.footer_address_label}</div>
+							${copy.footer_address_street_address_1}<br/>
+							${copy.footer_address_street_address_2}
+						</div>
+						<div class="salud-footer-copywrite">${copy.sticky_footer}</div>
+					</footer>
+					`
+			}
+		}
+	</script>
 </head>
 
 <body>
@@ -264,36 +391,45 @@
 			'salud-banner-graphic': saludGraphic(),
 			'salud-contact-form': saludContactForm(),
 			'salud-icon-item': saludIconItem(),
+			'salud-page-content': saludPageContent(),
+			'salud-sticky-footer-bar': saludStickyFooterBar(),
+			'salud-footer': saludFooter(),
 		})
 		const home = () => {
 			return html`
 					<main>
-						<construction-banner>${copy.under_construction_banner}</construction-banner>
 						
-						<salud-sticky-nav-bar></salud-sticky-nav-bar>
-						<p>
-							${copy.mission_statement}
-						</p>
-						<salud-header id="about-us">${copy.about_us_header}</salud-header>
-						<!-- <salud-banner-graphic /> -->
-						<p>
-							${copy.description}
-						</p>
-						<salud-header id="experience">${copy.experience_header}</salud-header>
-						<p>${copy.experience_intro}</p>
-						<ul>
-							${copy.experience_items.map(item => html`<li>${item.text}</l1>`)}
-						</ul>
-						<salud-header>${copy.companies_header}</salud-header>
-						<ul>
-							${copy.company_logos.map(company => html`<li>${company.alt}</l1>`)}
-						</ul>
-						<salud-header id="services">${copy.services_header}</salud-header>
-						<div style="display: flex; flex-wrap: wrap; justify-content: space-around;"> <!-- TODO: Make real component later -->
-							${copy.services_items.map(service => html`<salud-icon-item label=${service.label} icon=${service.graphic}/>`)}
-						</div>
-						<salud-header id="contact-us">${copy.contact_us_header}</salud-header>
-						<salud-contact-form />
+						<salud-sticky-nav-bar />
+						<salud-sticky-footer-bar />
+						<construction-banner>${copy.under_construction_banner}</construction-banner>
+
+						<salud-page-content>
+							<p>
+								${copy.mission_statement}
+							</p>
+							<salud-header id="about-us">${copy.about_us_header}</salud-header>
+							<!-- <salud-banner-graphic /> -->
+							<p>
+								${copy.description}
+							</p>
+							<salud-header id="experience">${copy.experience_header}</salud-header>
+							<p>${copy.experience_intro}</p>
+							<ul>
+								${copy.experience_items.map(item => html`<li>${item.text}</l1>`)}
+							</ul>
+							<salud-header>${copy.companies_header}</salud-header>
+							<ul>
+								${copy.company_logos.map(company => html`<li>${company.alt}</l1>`)}
+							</ul>
+							<salud-header id="services">${copy.services_header}</salud-header>
+							<div style="display: flex; flex-wrap: wrap; justify-content: space-around;"> <!-- TODO: Make real component later -->
+								${copy.services_items.map(service => html`<salud-icon-item label=${service.label} icon=${service.graphic}/>`)}
+							</div>
+							<salud-header id="contact-us">${copy.contact_us_header}</salud-header>
+							<salud-contact-form />
+						</salud-page-content>
+
+						<salud-footer />
 					</main>
 				`
 		}
