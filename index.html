@@ -96,9 +96,6 @@
 			text-align: center;
 			color: black;
 			margin-bottom: 1em;
-			position: absolute;
-			top: 0;
-			width: 600px;
 			margin-top: 0.5em;
 			z-index: 2; /* place banner in front of sticky-nav */
 		}
@@ -181,13 +178,13 @@
 			}
 		}
 	</script>
-	<style id=salud-logo-styles>
+	<style id="salud-logo-styles">
 		.salud-logo {
 			grid-area: logo;
 			align-self: center;
 		}
 	</style>
-	<script id=salud-logo>
+	<script id="salud-logo">
 		const saludLogo = () => {
 			const { registerHtml } = window['tram-one']
 			const html = registerHtml()
@@ -217,6 +214,59 @@
 			}
 		}
 	</script>
+	<style id="salud-title-header-styles">
+		.salud-title-header {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-rows: auto;
+			grid-template-areas:
+				"title		title			title"
+				"about		logo		services"
+				"experience	logo	contact";
+			position: relative;
+			bottom: 0;
+			width: 600px;
+			background-color: #fff;
+			z-index: 2; /* place the footer in front of the stick footer */
+			padding: 2em;
+			justify-items: center;
+		}
+		.about-us {
+			grid-area: about;
+		}
+		.salud-footer-title {
+			grid-area: title;
+		}
+		.experience {
+			grid-area: experience;
+		}
+		.services {
+			grid-area: services;
+		}
+		.contact-us {
+			grid-area: contact;
+		}
+	</style>
+	<script id="salud-title-header">
+		const saludTitleHeader = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml({
+				'salud-logo': saludLogo()
+			})
+			return (props, children) => {
+				return html`
+					<div class="salud-title-header">
+						<salud-logo class="logo" size="50px" />
+						<div class="salud-footer-title">${copy.title}</div>
+						<a class="nav-link about-us" href="#about-us">${copy.about_us_header}</a>
+						<a class="nav-link experience" href="#experience">${copy.experience_header}</a>
+						<a class="nav-link services" href="#services">${copy.services_header}</a>
+						<a class="nav-link contact-us" href="#contact-us">${copy.contact_us_header}</a>
+					</div>
+				`
+			}
+		}
+	</script>
 	<style id="salud-icon-item-styles">
 		.salud-icon-item-icon { font-size: 4em; }
 		.salud-icon-item {
@@ -239,14 +289,20 @@
 			}
 		}
 	</script>
+	<style>
+		.salud-header {
+			margin-top: -2em;
+  		padding-top: 2em;
+		}
+	</style>
 	<script id="salud-header">
 		const saludHeader = () => {
 			const { registerHtml } = window['tram-one']
 			const html = registerHtml()
 			return (props, children) => {
 				return html`
-						<h2 id=${props.id} class="salud-header">${children}</h2>
-					`
+					<h2 id=${props.id} class="salud-header">${children}</h2>
+				`
 			}
 		}
 	</script>
@@ -306,8 +362,12 @@
 	</script>
 	<style id="salud-page-content-styles">
 		.salud-page-content {
-			margin-top: 4em; /* put space at the top of the page for the header */
+			margin-top: 1em; /* put space at the top of the page for the header */
 			margin-bottom: 2em; /* put space at the bottom of the page for the footer */
+
+			/* left and right margin for the sides of the page */
+			margin-left: 2em;
+			margin-right: 2em;
 		}
 	</style>
 	<script id="salud-page-content">
@@ -331,11 +391,10 @@
 				". address 		 address ."
 				". copywrite copywrite .";
 			row-gap: 0.5em;
-			color: #fff;
 			position: relative;
 			bottom: 0;
 			width: 600px;
-			background-color: #5755d9;
+			background-color: #fff;
 			z-index: 2; /* place the footer in front of the stick footer */
 			padding: 1em 1em 0 1em;
 		}
@@ -385,6 +444,7 @@
 			'construction-banner': constructionBanner(),
 			'salud-sticky-nav-bar': saludStickyNavBar(),
 			'salud-title': saludTitle(),
+			'salud-title-header': saludTitleHeader(),
 			'salud-header': saludHeader(),
 			'salud-banner-graphic': saludGraphic(),
 			'salud-contact-form': saludContactForm(),
@@ -399,9 +459,9 @@
 						
 						<salud-sticky-nav-bar />
 						<salud-sticky-footer-bar />
-						<construction-banner>${copy.under_construction_banner}</construction-banner>
-
+						<salud-title-header />
 						<salud-page-content>
+							<construction-banner>${copy.under_construction_banner}</construction-banner>
 							<p>
 								${copy.mission_statement}
 							</p>
