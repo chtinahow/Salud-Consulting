@@ -2,7 +2,7 @@
 
 <head>
 	<!-- Meta tag to change how page looks on mobile-->
-	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<meta name="viewport" content="initial-scale=1.0, width=600px">
 
 	<!-- Dependencies -->
 	<script src="https://unpkg.com/tram-one@10.0.0/dist/tram-one.umd.js"></script>
@@ -87,6 +87,7 @@
 		body {
 			margin: 0 auto;
 			max-width: 600px;
+			font-size: clamp(1em, calc(1.5em - 1.20vw), 1.5em);
 		}
 	</style>
 
@@ -194,9 +195,9 @@
 					height: ${props.size};
 				`
 				return html`
-						<img 
+						<img
 							style=${sizeStyle}
-							class="salud-logo" 
+							class="salud-logo"
 							src="https://raw.githubusercontent.com/Tram-One/tram-logo/master/v3/color_64x64.png"
 						/>
 					`
@@ -230,20 +231,22 @@
 			z-index: 2; /* place the footer in front of the stick footer */
 			padding: 2em;
 			justify-items: center;
+			border: solid;
 		}
-		.about-us {
+		.header-about-us {
 			grid-area: about;
 		}
-		.salud-footer-title {
+		.header-title {
 			grid-area: title;
+			font-size: 2em;
 		}
-		.experience {
+		.header-experience {
 			grid-area: experience;
 		}
-		.services {
+		.header-services {
 			grid-area: services;
 		}
-		.contact-us {
+		.header-contact-us {
 			grid-area: contact;
 		}
 	</style>
@@ -257,11 +260,11 @@
 				return html`
 					<div class="salud-title-header">
 						<salud-logo class="logo" size="50px" />
-						<div class="salud-footer-title">${copy.title}</div>
-						<a class="nav-link about-us" href="#about-us">${copy.about_us_header}</a>
-						<a class="nav-link experience" href="#experience">${copy.experience_header}</a>
-						<a class="nav-link services" href="#services">${copy.services_header}</a>
-						<a class="nav-link contact-us" href="#contact-us">${copy.contact_us_header}</a>
+						<div class="header-title">${copy.title}</div>
+						<a class="nav-link header-about-us" href="#about-us">${copy.about_us_header}</a>
+						<a class="nav-link header-experience" href="#experience">${copy.experience_header}</a>
+						<a class="nav-link header-services" href="#services">${copy.services_header}</a>
+						<a class="nav-link header-contact-us" href="#contact-us">${copy.contact_us_header}</a>
 					</div>
 				`
 			}
@@ -397,6 +400,7 @@
 			background-color: #fff;
 			z-index: 2; /* place the footer in front of the stick footer */
 			padding: 1em 1em 0 1em;
+			border: solid;
 		}
 
 		.salud-footer-title {
@@ -456,7 +460,7 @@
 		const home = () => {
 			return html`
 					<main>
-						
+
 						<salud-sticky-nav-bar />
 						<salud-sticky-footer-bar />
 						<salud-title-header />
