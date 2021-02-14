@@ -5,7 +5,7 @@
 	<meta name="viewport" content="initial-scale=1.0, width=600px">
 
 	<!-- Dependencies -->
-	<script src="https://unpkg.com/tram-one@10.0.0/dist/tram-one.umd.js"></script>
+	<script src="https://unpkg.com/tram-one@10/dist/tram-one.umd.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
@@ -70,8 +70,8 @@
 			contact_us_phone_number_label: 'Phone Number',
 			contact_us_requested_services_label: 'Requested Service(s)',
 			contact_us_requested_services: [
-				'Consulting & Advisory Support',
-				'Support Services'
+				{ label: 'Consulting & Advisory Support', value: 'service_advisory' },
+				{ label: 'Support Services', value:'service_support' }
 			],
 			contact_us_detailed_message_label: 'Detailed Message',
 			contact_us_submit_button_label: 'Submit',
@@ -320,45 +320,105 @@
 			}
 		}
 	</script>
+	<style>
+		.form-label::after {
+			content: " *";
+    	color: red;
+		}
+	</style>
 	<script id="salud-contact-form">
 		const saludContactForm = () => {
-			const { registerHtml } = window['tram-one']
+			const { registerHtml, useStore } = window['tram-one']
 			const html = registerHtml()
 			return (props, children) => {
+				const fieldStore = useStore({
+					'name': { value: '', isInError: false },
+					'email': { value: '', isInError: false },
+					'phone': { value: '', isInError: false },
+					'services': { value: [], isInError: false },
+					'message': { value: '', isInError: false },
+				})
+				const onSubmit = (event) => {
+					event.preventDefault()
+					// validate if any required fields are missing
+					const form = event.target
+
+					// check the primary fields first, these all must be filled in
+					const name = form.name.value
+					const email = form.email.value
+					const phone = form.phone.value
+					const message = form.message.value
+
+					const updatePrimaryFieldState = ([fieldName, value]) => {
+						// update the value, so we can read on re-render
+						fieldStore[fieldName].value = value
+						// update fieldStore directly, set isInError if value is empty string
+						fieldStore[fieldName].isInError = value === ''
+					}
+
+					Object.entries({name, email, phone, message}).forEach(updatePrimaryFieldState)
+
+					// check the service fields next, one of these must be checked
+					const service_advisory = form.service_advisory.checked
+					const service_support = form.service_support.checked
+
+					// save the checked values in the fieldStore
+					fieldStore.services.value = [
+						service_advisory ? 'service_advisory' : '', 
+						service_support ? 'service_support' : ''
+					]
+					// if all services are false, set services isInError to true
+					fieldStore.services.isInError = (!service_advisory && !service_support )
+						
+					// if no field value is in error, submit the message
+					const fieldInError = (field) => field.isInError
+					const areAnyFieldsInError = Object.values(fieldStore).some(fieldInError)
+					if (!areAnyFieldsInError) {
+						// TODO: this is where the actual submit will go
+						console.log('Everything is good!')
+						console.log({
+							name, email, phone, message,
+							service_advisory, service_support
+						})
+					}
+				}
+
+				const getFieldError = (fieldName) => fieldStore[fieldName].isInError ? 'has-error is-error' : ''
 				return html`
-					<div>
-						<div class="salud-contact-form form-group">
-							<label class="form-label" for="contact-name">${copy.contact_us_name_label}</label>
-							<input class="form-input" type="text" id="contact-name" placeholder="${copy.contact_us_name_label}" />
+					<form onsubmit=${onSubmit}>
+						<div class="salud-contact-form form-group ${getFieldError('name')}">
+							<label class="form-label" for="name">${copy.contact_us_name_label}</label>
+							<input class="form-input" type="text" id="name" placeholder="${copy.contact_us_name_label}" 
+								value=${fieldStore.name.value}/>
 						</div>
-						<div class="form-group">
-							<label class="form-label" for="contact-email">Address</label>
-							<input class="form-input" type="text" id="contact-address" placeholder="Address" />
+						<div class="form-group ${getFieldError('email')}">
+							<label class="form-label" for="email">${copy.contact_us_email_address_label}</label>
+							<input class="form-input" type="email" id="email" placeholder="${copy.contact_us_email_address_label}" 
+								value=${fieldStore.email.value}/>
 						</div>
-						<div class="form-group">
-							<label class="form-label" for="contact-email">${copy.contact_us_email_address_label}</label>
-							<input class="form-input" type="text" id="contact-email" placeholder="${copy.contact_us_email_address_label}" />
-						</div>
-						<div class="form-group">
-							<label class="form-label" for="contact-phone">${copy.contact_us_phone_number_label}</label>
-							<input class="form-input" type="text" id="contact-phone" placeholder="${copy.contact_us_phone_number_label}" />
+						<div class="form-group ${getFieldError('phone')}">
+							<label class="form-label" for="phone">${copy.contact_us_phone_number_label}</label>
+							<input class="form-input" type="tel" id="phone" placeholder="${copy.contact_us_phone_number_label}" 
+								value=${fieldStore.phone.value} />
 						</div>
 						<div class="form-group">
 							<label class="form-label" for="services">${copy.contact_us_requested_services_label}</label>
 							${copy.contact_us_requested_services.map(service => html`
-								<label class="form-checkbox">
-								<input type="checkbox" />
-								<i class="form-icon"></i>
-									${service}
+								<label class="form-checkbox ${getFieldError('services')}">
+									<input type="checkbox" id=${service.value} ${fieldStore.services.value.includes(service.value) ? 'checked' : ''}/>
+									<i class="form-icon"></i>
+									${service.label}
 								</label>
 							`)}
 						</div>
-						<div class="form-group">
-							<label class="form-label" for="detailed-message">${copy.contact_us_detailed_message_label}</label>
-							<textarea class="form-input" id="detailed-message" placeholder="${copy.contact_us_detailed_message_label}" rows="3"></textarea>
+						<div class="form-group ${getFieldError('message')}">
+							<label class="form-label" for="message">${copy.contact_us_detailed_message_label}</label>
+							<textarea class="form-input" id="message" placeholder="${copy.contact_us_detailed_message_label}" rows="3">
+								${fieldStore.message.value}
+							</textarea>
 						</div>
-						<button class="btn btn-primary">${copy.contact_us_submit_button_label}</button>
-					</div>
+						<input type="submit" class="btn btn-primary" value=${copy.contact_us_submit_button_label} />
+					</form>
 				`
 			}
 		}
