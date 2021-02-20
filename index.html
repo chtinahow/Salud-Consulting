@@ -10,6 +10,16 @@
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBGHXVT3X6"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-XBGHXVT3X6');
+	</script>
+
 	<!-- Fontawesome Icon Library -->
 	<script src="https://kit.fontawesome.com/deecad9010.js" crossorigin="anonymous"></script>
 
@@ -364,12 +374,12 @@
 
 					// save the checked values in the fieldStore
 					fieldStore.services.value = [
-						service_advisory ? 'service_advisory' : '', 
+						service_advisory ? 'service_advisory' : '',
 						service_support ? 'service_support' : ''
 					]
 					// if all services are false, set services isInError to true
 					fieldStore.services.isInError = (!service_advisory && !service_support )
-						
+
 					// if no field value is in error, submit the message
 					const fieldInError = (field) => field.isInError
 					const areAnyFieldsInError = Object.values(fieldStore).some(fieldInError)
@@ -388,17 +398,17 @@
 					<form onsubmit=${onSubmit}>
 						<div class="salud-contact-form form-group ${getFieldError('name')}">
 							<label class="form-label" for="name">${copy.contact_us_name_label}</label>
-							<input class="form-input" type="text" id="name" placeholder="${copy.contact_us_name_label}" 
+							<input class="form-input" type="text" id="name" placeholder="${copy.contact_us_name_label}"
 								value=${fieldStore.name.value}/>
 						</div>
 						<div class="form-group ${getFieldError('email')}">
 							<label class="form-label" for="email">${copy.contact_us_email_address_label}</label>
-							<input class="form-input" type="email" id="email" placeholder="${copy.contact_us_email_address_label}" 
+							<input class="form-input" type="email" id="email" placeholder="${copy.contact_us_email_address_label}"
 								value=${fieldStore.email.value}/>
 						</div>
 						<div class="form-group ${getFieldError('phone')}">
 							<label class="form-label" for="phone">${copy.contact_us_phone_number_label}</label>
-							<input class="form-input" type="tel" id="phone" placeholder="${copy.contact_us_phone_number_label}" 
+							<input class="form-input" type="tel" id="phone" placeholder="${copy.contact_us_phone_number_label}"
 								value=${fieldStore.phone.value} />
 						</div>
 						<div class="form-group">
