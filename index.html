@@ -320,6 +320,77 @@
 			}
 		}
 	</script>
+	<style id="salud-company-logos-styles">
+		.salud-company-logos {
+			display: grid;
+			grid-template-columns: 1fr 1fr 4fr 1fr;
+			grid-template-rows: auto;
+			grid-template-areas:
+				"GSK							Pfizer"
+				"Thermofisher		Regeneron"
+				"Biovectra	KBI-biopharma"
+				"Novavax						SAIC"
+				"Alkermes				Alkermes";
+			row-gap: 0.5em;
+		}
+		.GSK {
+			grid-area: GSK;
+			width: 15em;
+		}
+		.Pfizer {
+			grid-area: Pfizer;
+			width: 15em;
+		}
+		.Thermofisher {
+			grid-area: Thermofisher;
+			width: 15em;
+		}
+		.Regeneron {
+			grid-area: Regeneron;
+			width: 15em;
+		}
+		.Biovectra {
+			grid-area: Biovectra;
+			width: 15em;
+		}
+		.KBI-biopharma {
+			grid-area: KBI-biopharma;
+			width: 15em;
+		}
+		.Novavax {
+			grid-area: Novavax;
+			width: 15em;
+		}
+		.SAIC {
+			grid-area: SAIC;
+			width: 15em;
+		}
+		.Alkermes {
+			grid-area: Alkermes;
+			width: 15em;
+		}
+	</style>
+	<script id="salud-company-logos">
+		const saludCompanyLogos = () => {
+			const { registerHtml } = window['tram-one']
+			const html = registerHtml()
+			return({alt}) => {
+				return html`
+					<div class="salud-company-logos">
+						<img class="GSK" src="Logos/gskLogo.png"></img>
+						<img class="Pfizer" src="Logos/pfizerLogo.png"></img>
+						<img class="Thermofisher" src="Logos/thermofisher.png"></img>
+						<img class="Regeneron" src="Logos/RegeneronLogo.png"></img>
+						<img class="Biovectra" src="Logos/BiovectraLogo.jpg"></img>
+						<img class="KBI-biopharma" src="Logos/KBITransparent.png"></img>
+						<img class="Novavax" src="Logos/NVAX.png"></img>
+						<img class="SAIC" src="Logos/SAICLogo.png"></img>
+						<img class="Alkermes" src="Logos/AlkernesLogo.png"></img>
+					</div>
+				`
+			}
+		}
+	</script>
 	<style>
 		.form-label::after {
 			content: " *";
@@ -511,6 +582,7 @@
 			'salud-title-header': saludTitleHeader(),
 			'salud-header': saludHeader(),
 			'salud-banner-graphic': saludGraphic(),
+			'salud-company-logos': saludCompanyLogos(),
 			'salud-contact-form': saludContactForm(),
 			'salud-icon-item': saludIconItem(),
 			'salud-page-content': saludPageContent(),
