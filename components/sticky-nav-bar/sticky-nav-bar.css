@@ -1,0 +1,21 @@
+.salud-sticky-nav-bar {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	position: fixed; /* Set the navbar to fixed position */
+	top: 0; /* Position the navbar at the top of the page */
+	width: 600px; /* size of page */
+	padding: 0.5em;
+	background-color: #ffffff;
+	box-shadow: 0 0.4em 0.4em -4px rgb(0 0 0 / 50%);
+	z-index: 1; /* place sticky-nav in front of form inputs */
+}
+
+.nav-link {
+	padding: 0.2em
+}
+
+.salud-logo {
+	width: 2em;
+	height: 2em;
+}

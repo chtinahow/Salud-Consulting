@@ -10,175 +10,37 @@
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 
+	<!-- EmailJS -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+	<script type="text/javascript">
+		(function() {
+			emailjs.init("user_temALHHkZY64QWMUx9x9K");
+		})();
+	</script>
+
+	<!-- Locally defined styles -->
+	<link rel="stylesheet" href="/style.css">
+
 	<!-- Fontawesome Icon Library -->
 	<script src="https://kit.fontawesome.com/deecad9010.js" crossorigin="anonymous"></script>
 
-	<!-- Title & Text for the Page (Can Edit) -->
+	<!-- Title -->
 	<title>Salud Consulting LLC</title>
-	<script id="copy">
-		/**
-		 * This is the copy for the website
-		 * Edit the text that appears on the website here!
-		 */
-		const copy = {
-			title: 'Salud Consulting LLC',
-			under_construction_banner: 'This site is currently under construction. Thank you for your patience.',
-			mission_statement: 'At Salud Consulting our mission is to help companies identify gaps in their business and resolve those issues, hands on.',
-			about_us_header: 'About Us',
-			contact_us_header: 'Contact Us',
-			description: 'Salud Consulting is a consulting firm with personnel who have experience in Quality Assurance, remediation, QA audits, Project management, Process engineering, manufacturing, aseptic fill finish, cybersecurity and EHS.',
-			experience_header: 'Experience',
-			experience_intro: 'Over 20 years of biopharm and pharmaceutical experience. Hands on experience in the following:',
-			experience_items: [
-				{ text: 'Process Engineering' },
-				{ text: 'Manufacturing (Upstream & Downstream)' },
-				{ text: 'Viral Inactivation' },
-				{ text: 'mAB' },
-				{ text: 'Asceptic Fill Finish' },
-				{ text: 'Remediation' },
-				{ text: 'Medical Devices' },
-				{ text: 'SOP Writing & Revision' },
-				{ text: 'Quality Assurance' },
-				{ text: 'Batch Records & Deviations' },
-				{ text: 'Training Personnel how to use Lab Equipment' },
-			],
-			companies_header: 'Companies We\'ve Worked With',
-			company_logos: [
-				{ graphic: '', alt: 'GSK' },
-				{ graphic: '', alt: 'Pfizer' },
-				{ graphic: '', alt: 'Thermofisher' },
-				{ graphic: '', alt: 'Regeneron' },
-				{ graphic: '', alt: 'Biovectra' },
-				{ graphic: '', alt: 'KBI biopharma' },
-				{ graphic: '', alt: 'Novavax' },
-				{ graphic: '', alt: 'SAIC' },
-				{ graphic: '', alt: 'Alkermes' },
-				{ graphic: '', alt: 'Pfizer India' },
-			],
-			services_header: 'Services',
-			services_items: [
-				{ label: 'Consulting', graphic: 'fa-handshake' },
-				{ label: 'Project Mangement', graphic: 'fa-chart-pie' },
-				{ label: 'Process Engineering', graphic: 'fa-calendar-week' },
-				{ label: 'Remediation', graphic: 'fa-tools' },
-				{ label: 'EHS', graphic: 'fa-user-hard-hat' },
-				{ label: 'Quality Assurance', graphic: 'fa-clipboard-list-check' },
-				{ label: 'Cybersecurity', graphic: 'fa-fingerprint' },
-			],
-			contact_us_name_label: 'Name',
-			contact_us_email_address_label: 'Email Address',
-			contact_us_phone_number_label: 'Phone Number',
-			contact_us_requested_services_label: 'Requested Service(s)',
-			contact_us_requested_services: [
-				{ label: 'Consulting & Advisory Support', value: 'service_advisory' },
-				{ label: 'Support Services', value:'service_support' }
-			],
-			contact_us_detailed_message_label: 'Detailed Message',
-			contact_us_submit_button_label: 'Submit',
-			sticky_footer: '© 2021 Salud Consulting LLC, All rights reserved.',
-			footer_address_label: 'Corporate Headquarters',
-			footer_address_street_address_1:'5457 Twin Knolls Rd suite 300',
-			footer_address_street_address_2:'Columbia, MD 21045',
-		}
-	</script>
 
-	<!-- Styles for the entire page -->
-	<style id="page-style">
-		body {
-			margin: 0 auto;
-			max-width: 600px;
-			font-size: clamp(1em, calc(1.5em - 1.20vw), 1.5em);
-		}
-	</style>
+	<!-- Copy for the Page (English) -->
+	<script id="copy" src="/copy.js"></script>
 
 	<!-- Components for the Page -->
-	<style id="construction-banner-styles">
-		.construction-banner {
-			text-align: center;
-			color: black;
-			margin-bottom: 1em;
-			margin-top: 0.5em;
-			z-index: 2; /* place banner in front of sticky-nav */
-		}
-	</style>
-	<script id="construction-banner">
-		const constructionBanner = () => {
-			const { registerHtml } = window['tram-one']
-			const html = registerHtml()
-			return (props, children) => {
-				return html`
-					<div class="construction-banner toast toast-warning">
-						${children}
-					</div>
-				`
-			}
-		}
-	</script>
-	<style id="sticky-nav-bar-styles">
-		.salud-sticky-nav-bar {
-			display: flex;
-			flex-wrap: nowrap;
-			justify-content: space-between;
-			position: fixed; /* Set the navbar to fixed position */
-			top: 0; /* Position the navbar at the top of the page */
-			width: 600px; /* size of page */
-			padding: 0.5em;
-			background-color: #ffffff;
-			box-shadow: 0 0.4em 0.4em -4px rgb(0 0 0 / 50%);
-			z-index: 1; /* place sticky-nav in front of form inputs */
-		}
+	<link rel="stylesheet" href="/components/construction-banner/construction-banner.css">
+	<script src="/components/construction-banner/construction-banner.js"></script>
 
-		.nav-link {
-			padding: 0.2em
-		}
+	<link rel="stylesheet" href="/components/sticky-nav-bar/sticky-nav-bar.css">
 
-		.salud-logo {
-			width: 2em;
-			height: 2em;
-		}
-	</style>
-	<script id="sticky-nav-bar">
-		const saludStickyNavBar = () => {
-			const { registerHtml } = window['tram-one']
-			const html = registerHtml()
-			return (props, children) => {
-				return html `
-					<nav class="salud-sticky-nav-bar">
-						<img class="salud-logo" src="https://raw.githubusercontent.com/Tram-One/tram-logo/master/v3/color_64x64.png"></img>
-						<a class="nav-link" href="#about-us">${copy.about_us_header}</a>
-						<a class="nav-link" href="#experience">${copy.experience_header}</a>
-						<a class="nav-link" href="#services">${copy.services_header}</a>
-						<a class="nav-link" href="#contact-us">${copy.contact_us_header}</a>
-					</nav>
-				`
-			}
-		}
-	</script>
-	<style id="sticky-footer-bar-styles">
-		.salud-sticky-footer-bar {
-			position: fixed; /* Set the navbar to fixed position */
-			bottom: 0; /* Position the navbar at the top of the page */
-			width: 600px; /* size of page */
-			padding: 0.5em;
-			background-color: #ffffff;
-			box-shadow: 0 -0.4em 0.4em -4px rgb(0 0 0 / 50%);
-			text-align: center;
-			z-index: 1; /* place sticky-footer in front of form inputs */
-		}
-	</style>
-	<script id="sticky-footer-bar">
-		const saludStickyFooterBar = () => {
-			const { registerHtml } = window['tram-one']
-			const html = registerHtml()
-			return (props, children) => {
-				return html `
-					<footer class="salud-sticky-footer-bar">
-						${copy.sticky_footer}
-					</footer>
-				`
-			}
-		}
-	</script>
+	<script src="/components/sticky-nav-bar/sticky-nav-bar.js"></script>
+
+	<link rel="stylesheet" href="/components/sticky-footer-bar/sticky-footer-bar.css">
+	<script src="/components/sticky-footer-bar/sticky-footer-bar.js"></script>
+	
 	<style id="salud-logo-styles">
 		.salud-logo {
 			grid-area: logo;
@@ -292,7 +154,7 @@
 			}
 		}
 	</script>
-	<style>
+	<style id="salud-header-styles">
 		.salud-header {
 			margin-top: -2em;
   		padding-top: 2em;
@@ -323,7 +185,7 @@
 	<style id="salud-company-logos-styles">
 		.salud-company-logos {
 			display: grid;
-			grid-template-columns: 1fr 1fr 4fr 1fr;
+			grid-template-columns: 1fr 1fr;
 			grid-template-rows: auto;
 			grid-template-areas:
 				"GSK							Pfizer"
@@ -391,7 +253,7 @@
 			}
 		}
 	</script>
-	<style>
+	<style id="salud-contact-form-styles">
 		.form-label::after {
 			content: " *";
     	color: red;
@@ -409,7 +271,12 @@
 					'services': { value: [], isInError: false },
 					'message': { value: '', isInError: false },
 				})
-				const onSubmit = (event) => {
+
+				const emailSent = useStore({
+					status: undefined
+				})
+
+				const onSubmit = async (event) => {
 					event.preventDefault()
 					// validate if any required fields are missing
 					const form = event.target
@@ -445,14 +312,46 @@
 					const fieldInError = (field) => field.isInError
 					const areAnyFieldsInError = Object.values(fieldStore).some(fieldInError)
 					if (!areAnyFieldsInError) {
-						// TODO: this is where the actual submit will go
-						console.log('Everything is good!')
-						console.log({
-							name, email, phone, message,
-							service_advisory, service_support
-						})
+						try {
+							// get the list of labels for the services selected
+							const getServiceLabel = serviceValue => {
+								return copy.contact_us_requested_services.find(service => service.value == serviceValue).label
+							}
+							const nonEmptyService = serviceValue => Boolean(serviceValue)
+							const requestedServices = fieldStore.services.value.filter(nonEmptyService).map(getServiceLabel)
+
+							const emailFormParameters = {
+								name, 
+								email, 
+								phone, 
+								message,
+								services: requestedServices.join(', ')
+							}
+							emailSent.status = 'sending'
+							await emailjs.send('service_6id09rz', 'template_ycw89o3', emailFormParameters)
+							emailSent.status = 'success'
+						} catch (error) {
+							emailSent.status = 'error'
+						}
 					}
 				}
+
+				const formFooter = (() => {
+					switch(emailSent.status) {
+						case 'sending':
+							// if the email is sending, show a banner while they wait
+							return html`<div class="toast toast-warning">${copy.email_status.sending}</div>`
+						case 'success':
+							// if the email was sent, show a banner that it succeeded
+							return html`<div class="toast toast-success">${copy.email_status.success}</div>`
+						case 'error':
+							// if the email failed to send, show an error
+							return html`<div class="toast toast-error">${copy.email_status.error}</div>`
+						default:
+							// if the email has not been sent, show the submit button
+							return html`<input type="submit" class="btn btn-primary" value=${copy.contact_us_submit_button_label} />`
+					}
+				})()
 
 				const getFieldError = (fieldName) => fieldStore[fieldName].isInError ? 'has-error is-error' : ''
 				return html`
@@ -488,7 +387,7 @@
 								${fieldStore.message.value}
 							</textarea>
 						</div>
-						<input type="submit" class="btn btn-primary" value=${copy.contact_us_submit_button_label} />
+						${formFooter}
 					</form>
 				`
 			}
@@ -612,6 +511,7 @@
 								${copy.experience_items.map(item => html`<li>${item.text}</l1>`)}
 							</ul>
 							<salud-header>${copy.companies_header}</salud-header>
+							<salud-company-logos />
 							<ul>
 								${copy.company_logos.map(company => html`<li>${company.alt}</l1>`)}
 							</ul>

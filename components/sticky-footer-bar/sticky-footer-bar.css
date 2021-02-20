@@ -1,0 +1,10 @@
+.salud-sticky-footer-bar {
+	position: fixed; /* Set the navbar to fixed position */
+	bottom: 0; /* Position the navbar at the top of the page */
+	width: 600px; /* size of page */
+	padding: 0.5em;
+	background-color: #ffffff;
+	box-shadow: 0 -0.4em 0.4em -4px rgb(0 0 0 / 50%);
+	text-align: center;
+	z-index: 1; /* place sticky-footer in front of form inputs */
+}

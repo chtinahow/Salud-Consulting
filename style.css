@@ -1,0 +1,6 @@
+/* styles for the entire page */
+body {
+	margin: 0 auto;
+	max-width: 600px;
+	font-size: clamp(1em, calc(1.5em - 1.20vw), 1.5em);
+}
