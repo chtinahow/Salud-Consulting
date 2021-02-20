@@ -1,0 +1,8 @@
+.salud-page-content {
+	margin-top: 1em; /* put space at the top of the page for the header */
+	margin-bottom: 2em; /* put space at the bottom of the page for the footer */
+
+	/* left and right margin for the sides of the page */
+	margin-left: 2em;
+	margin-right: 2em;
+}

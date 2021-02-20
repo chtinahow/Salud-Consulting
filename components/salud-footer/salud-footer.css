@@ -1,0 +1,30 @@
+.salud-footer {
+	display: grid;
+	grid-template-columns: 1fr 1fr 4fr 1fr;
+	grid-template-rows: auto;
+	grid-template-areas:
+		". logo 			 	 title ."
+		". address 		 address ."
+		". copywrite copywrite .";
+	row-gap: 0.5em;
+	position: relative;
+	bottom: 0;
+	width: 600px;
+	background-color: #fff;
+	z-index: 2; /* place the footer in front of the stick footer */
+	padding: 1em 1em 0 1em;
+	border: solid;
+}
+
+.salud-footer-title {
+	grid-area: title;
+	font-size: 2em;
+}
+
+.salud-footer-address {
+	grid-area: address;
+}
+
+.salud-footer-copywrite {
+	grid-area: copywrite;
+}

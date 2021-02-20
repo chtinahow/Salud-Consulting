@@ -1,0 +1,33 @@
+.salud-title-header {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto;
+	grid-template-areas:
+		"title		title			title"
+		"about		logo		services"
+		"experience	logo	contact";
+	position: relative;
+	bottom: 0;
+	width: 600px;
+	background-color: #fff;
+	z-index: 2; /* place the footer in front of the stick footer */
+	padding: 2em;
+	justify-items: center;
+	border: solid;
+}
+.header-about-us {
+	grid-area: about;
+}
+.header-title {
+	grid-area: title;
+	font-size: 2em;
+}
+.header-experience {
+	grid-area: experience;
+}
+.header-services {
+	grid-area: services;
+}
+.header-contact-us {
+	grid-area: contact;
+}
