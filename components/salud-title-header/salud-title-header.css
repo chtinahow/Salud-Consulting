@@ -8,12 +8,12 @@
 		"experience	logo	contact";
 	position: relative;
 	bottom: 0;
-	width: 600px;
-	background-color: #fff;
+	max-width: 900px;
+	background-color: #153a5e;
 	z-index: 2; /* place the footer in front of the stick footer */
 	padding: 2em;
 	justify-items: center;
-	border: solid;
+	color: #fff;
 }
 .header-about-us {
 	grid-area: about;

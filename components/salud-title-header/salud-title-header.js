@@ -6,7 +6,7 @@ const saludTitleHeader = () => {
 	return (props, children) => {
 		return html`
 			<div class="salud-title-header">
-				<salud-logo class="logo" size="50px" />
+				<salud-logo class="logo" size="100px" />
 				<div class="header-title">${copy.title}</div>
 				<a class="nav-link header-about-us" href="#about-us">${copy.about_us_header}</a>
 				<a class="nav-link header-experience" href="#experience">${copy.experience_header}</a>

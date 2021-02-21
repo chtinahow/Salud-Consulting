@@ -1,6 +1,6 @@
 .salud-footer {
 	display: grid;
-	grid-template-columns: 1fr 1fr 4fr 1fr;
+	grid-template-columns: 1fr 2fr 8fr 1fr;
 	grid-template-rows: auto;
 	grid-template-areas:
 		". logo 			 	 title ."
@@ -9,11 +9,11 @@
 	row-gap: 0.5em;
 	position: relative;
 	bottom: 0;
-	width: 600px;
-	background-color: #fff;
+	max-width: 900px;
+	background-color: #153a5e;
 	z-index: 2; /* place the footer in front of the stick footer */
 	padding: 1em 1em 0 1em;
-	border: solid;
+	color: #fff;
 }
 
 .salud-footer-title {

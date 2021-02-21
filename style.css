@@ -1,6 +1,29 @@
 /* styles for the entire page */
 body {
 	margin: 0 auto;
-	max-width: 600px;
-	font-size: clamp(1em, calc(1.5em - 1.20vw), 1.5em);
+	max-width: 900px;
+	font-size: clamp(1em, calc(1.8em - 1.20vw), 1.8em);
+	box-shadow: 0 0 14px 3px #666;
+}
+
+html {
+ background-image: url('backgrounds/funky-lines.png');
+}
+
+html::before {
+		content: "";
+	background-image: url('backgrounds/blue-gradient.png');
+	background-size: cover;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	opacity: 0.5;
+	z-index: -1; /* place behind other elements */
+}
+
+a {
+	color: inherit!important;
+	font-variant: all-petite-caps;
 }

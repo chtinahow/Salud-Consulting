@@ -87,7 +87,7 @@ const saludContactForm = () => {
 					return html`<div class="toast toast-error">${copy.email_status.error}</div>`
 				default:
 					// if the email has not been sent, show the submit button
-					return html`<input type="submit" class="btn btn-primary" value=${copy.contact_us_submit_button_label} />`
+					return html`<input type="submit" class="salud-contact-form-submit btn btn-primary" value=${copy.contact_us_submit_button_label} />`
 			}
 		})()
 

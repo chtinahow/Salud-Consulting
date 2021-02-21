@@ -45,14 +45,14 @@ const copy = {
 		{ label: 'Support Services', value:'service_support' }
 	],
 	contact_us_detailed_message_label: 'Detailed Message',
-	contact_us_submit_button_label: 'Submit',
+	contact_us_submit_button_label: 'Send Request',
 	sticky_footer: '© 2021 Salud Consulting LLC, All rights reserved.',
 	footer_address_label: 'Corporate Headquarters',
 	footer_address_street_address_1:'5457 Twin Knolls Rd suite 300',
 	footer_address_street_address_2:'Columbia, MD 21045',
 	email_status: {
-		sending: 'Email is sending, please do not leave the page.',
-		success: 'Email was sent successfully. We will get back to you shortly.',
-		error: 'We\'re sorry, the email failed to send, please try again or contact us directly at etravishow@saludconsulting.org'
+		sending: 'Request is being submitted, please do not leave the page.',
+		success: 'Request was sent successfully. We will get back to you shortly.',
+		error: 'We\'re sorry, the request failed to send, please try again or contact us directly at etravishow@saludconsulting.org'
 	}
 }
