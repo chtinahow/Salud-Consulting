@@ -59,9 +59,9 @@ const saludContactForm = () => {
 					const requestedServices = fieldStore.services.value.filter(nonEmptyService).map(getServiceLabel)
 
 					const emailFormParameters = {
-						name, 
-						email, 
-						phone, 
+						name,
+						email,
+						phone,
 						message,
 						services: requestedServices.join(', ')
 					}
@@ -93,8 +93,8 @@ const saludContactForm = () => {
 
 		const getFieldError = (fieldName) => fieldStore[fieldName].isInError ? 'has-error is-error' : ''
 		return html`
-			<form onsubmit=${onSubmit}>
-				<div class="salud-contact-form form-group ${getFieldError('name')}">
+			<form class="salud-contact-form" onsubmit=${onSubmit}>
+				<div class="form-group ${getFieldError('name')}">
 					<label class="form-label" for="name">${copy.contact_us_name_label}</label>
 					<input class="form-input" type="text" id="name" placeholder="${copy.contact_us_name_label}"
 						value=${fieldStore.name.value}/>

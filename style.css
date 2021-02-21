@@ -1,9 +1,9 @@
 /* styles for the entire page */
 body {
-	margin: 0 auto;
-	max-width: 900px;
-	font-size: clamp(1em, calc(1.8em - 1.20vw), 1.8em);
-	box-shadow: 0 0 14px 3px #666;
+	margin: 0 auto; /* center align page content */
+	max-width: 900px; /* fix page-size to 900px */
+	font-size: clamp(1em, calc(1.8em - 1.20vw), 1.8em); /* scale font-size up with smaller page */
+	box-shadow: 0 0 14px 3px #666; /* add box-shadow to left and right */
 }
 
 html {
@@ -11,7 +11,7 @@ html {
 }
 
 html::before {
-		content: "";
+	content: "";
 	background-image: url('backgrounds/blue-gradient.png');
 	background-size: cover;
 	position: fixed;
@@ -24,6 +24,12 @@ html::before {
 }
 
 a {
-	color: inherit!important;
-	font-variant: all-petite-caps;
+	color: inherit!important; /* links should inherit their color */
+	font-variant: all-petite-caps; /* links should use capital letters */
+}
+
+/* style font-awesome duo-tone icons */
+.salud-icon-item-icon {
+	--fa-primary-color: #6dc0ec;
+	--fa-secondary-color: #bac2c8;
 }

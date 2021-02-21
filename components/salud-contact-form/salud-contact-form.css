@@ -1,3 +1,13 @@
+.salud-contact-form {
+	font-size: 0.7em;
+	border: solid;
+	padding: 1.7em;
+	border-radius: 1em;
+	background: aliceblue;
+	border-color: #bac2c8;
+}
+
+/* style labels to have "required" star */
 .form-label::after {
 	content: " *";
 	color: red;
