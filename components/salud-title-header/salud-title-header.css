@@ -1,17 +1,19 @@
 .salud-title-header {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: auto;
+	grid-template-rows: auto 3em 3em;
 	grid-template-areas:
 		"title		title			title"
 		"about		logo		services"
 		"experience	logo	contact";
+	align-items: center;
 	position: relative;
 	bottom: 0;
 	max-width: 900px;
 	background-color: #153a5e;
 	z-index: 2; /* place the footer in front of the stick footer */
 	padding: 2em;
+	padding-bottom: 1em;
 	justify-items: center;
 	color: #fff;
 }
@@ -21,6 +23,7 @@
 .header-title {
 	grid-area: title;
 	font-size: 2em;
+	padding-bottom: 0.5em;
 }
 .header-experience {
 	grid-area: experience;

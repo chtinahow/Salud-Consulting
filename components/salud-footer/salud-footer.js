@@ -6,7 +6,7 @@ const saludFooter = () => {
 	return (props, children) => {
 		return html`
 			<footer class="salud-footer">
-				<salud-logo size="50px" />
+				<salud-logo size="90px" />
 				<div class="salud-footer-title">${copy.title}</div>
 				<div class="salud-footer-address">
 					<div>${copy.footer_address_label}</div>

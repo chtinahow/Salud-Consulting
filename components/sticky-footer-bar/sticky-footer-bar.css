@@ -5,7 +5,8 @@
 	width: 900px;
 	max-width: 100%;
 	padding: 0.5em;
-	background-color: #d2d9df;
+	background-color: #153a5e;
+	color: #FFF;
 	text-align: center;
 	z-index: 1; /* place sticky-footer in front of form inputs */
 }

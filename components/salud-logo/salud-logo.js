@@ -10,7 +10,7 @@ const saludLogo = () => {
 				<img
 					style=${sizeStyle}
 					class="salud-logo"
-					src="https://raw.githubusercontent.com/Tram-One/tram-logo/master/v3/color_64x64.png"
+					src="../../SaludConsulting_Logo.png"
 				/>
 			`
 	}
