@@ -4,11 +4,25 @@
 	<!-- Meta tag to change how page looks on mobile-->
 	<meta name="viewport" content="width=700px">
 
+	<!-- Meta tags for social media preview-->
+	<meta name="twitter:card" content="summary" />
+
+	<meta property="og:title" content="Salud Consulting LLC">
+	<meta property="og:url" content="https://saludconsulting.org">
+	<meta property="og:image" content="/graphics/SaludConsulting_Banner.png">
+
+	<!-- Site color -->
+	<meta name="theme-color" content="#153a5e">
+
 	<!-- Dependencies -->
 	<script src="https://unpkg.com/tram-one@10/dist/tram-one.umd.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 
 	<!-- EmailJS -->
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
@@ -28,7 +42,7 @@
 	<title>Salud Consulting LLC</title>
 
 	<!-- Favicon (Icon in tab and bookmarks) -->
-	<link rel="icon" type="image/png" href="/SaludConsultingLogo_HighContrast.png">
+	<link rel="icon" type="image/png" href="/graphics/SaludConsultingLogo.png">
 
 	<!-- Copy for the Page (English) -->
 	<script id="copy" src="/copy.js"></script>
@@ -58,7 +72,11 @@
 	<link rel="stylesheet" href="/components/salud-header/salud-header.css">
 	<script src="components/salud-header/salud-header.js"></script>
 
+	<link rel="stylesheet" href="/components/salud-banner-graphic/salud-banner-graphic.css">
 	<script src="components/salud-banner-graphic/salud-banner-graphic.js"></script>
+
+	<link rel="stylesheet" href="/components/salud-mission-statement-banner/salud-mission-statement-banner.css">
+	<script src="components/salud-mission-statement-banner/salud-mission-statement-banner.js"></script>
 
 	<link rel="stylesheet" href="/components/salud-company-logos/salud-company-logos.css">
 	<script src="/components/salud-company-logos/salud-company-logos.js"></script>
@@ -84,6 +102,7 @@
 			'salud-title-header': saludTitleHeader(),
 			'salud-header': saludHeader(),
 			'salud-banner-graphic': saludGraphic(),
+			'salud-mission-statement-banner': saludMissionStatementBanner(),
 			'salud-company-logos': saludCompanyLogos(),
 			'salud-contact-form': saludContactForm(),
 			'salud-icon-item': saludIconItem(),
@@ -98,24 +117,29 @@
 						<salud-sticky-nav-bar />
 						<salud-sticky-footer-bar />
 						<salud-title-header />
+
+						<salud-mission-statement-banner>
+							${copy.mission_statement}
+						</salud-mission-statement-banner>
+
 						<salud-page-content>
-							<construction-banner>${copy.under_construction_banner}</construction-banner>
-							<p>
-								${copy.mission_statement}
-							</p>
+							<!-- <construction-banner>${copy.under_construction_banner}</construction-banner> -->
 							<salud-header id="about-us">${copy.about_us_header}</salud-header>
-							<!-- <salud-banner-graphic /> -->
+							<salud-banner-graphic src="/graphics/science-in-hd-unsplash.jpg" position="30% 75%" />
 							<p>
 								${copy.description}
 							</p>
 							<salud-header id="experience">${copy.experience_header}</salud-header>
+							<salud-banner-graphic src="/graphics/national-cancer-institute-05-unsplash.jpg" position="31% 64%"/>
 							<p>${copy.experience_intro}</p>
 							<ul>
 								${copy.experience_items.map(item => html`<li>${item.text}</l1>`)}
 							</ul>
 							<salud-header>${copy.companies_header}</salud-header>
+							<salud-banner-graphic src="/graphics/national-cancer-institute-03-unsplash.jpg" position="31% 64%" />
 							<salud-company-logos title=${copy.company_logos_title} />
 							<salud-header id="services">${copy.services_header}</salud-header>
+							<salud-banner-graphic src="/graphics/national-cancer-institute-04-unsplash.jpg" position="30% 31%"/>
 							<div style="display: flex; flex-wrap: wrap; justify-content: space-around;"> <!-- TODO: Make real component later -->
 								${copy.services_items.map(service => html`<salud-icon-item label=${service.label} icon=${service.graphic}/>`)}
 							</div>

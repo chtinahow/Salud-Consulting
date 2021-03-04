@@ -1,4 +1,6 @@
 .salud-title-header {
+	font-family: 'Poppins', sans-serif;
+	font-style: italic;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: auto 3em 3em;
@@ -11,6 +13,7 @@
 	bottom: 0;
 	max-width: 900px;
 	background-color: #153a5e;
+	/* background-color: white; */
 	z-index: 2; /* place the footer in front of the stick footer */
 	padding: 2em;
 	padding-bottom: 1em;

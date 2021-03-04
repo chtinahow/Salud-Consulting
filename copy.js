@@ -5,7 +5,7 @@
 const copy = {
 	title: 'Salud Consulting LLC',
 	under_construction_banner: 'This site is currently under construction. Thank you for your patience.',
-	mission_statement: 'At Salud Consulting our mission is to help companies identify gaps in their business and resolve those issues, hands on.',
+	mission_statement: 'Our mission is to help companies identify gaps in their business and resolve those issues, hands on.',
 	about_us_header: 'About Us',
 	contact_us_header: 'Contact Us',
 	description: 'Salud Consulting is a consulting firm with personnel who have experience in Quality Assurance, remediation, QA audits, Project management, Process engineering, manufacturing, aseptic fill finish, cybersecurity and EHS.',
