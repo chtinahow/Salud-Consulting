@@ -1,6 +1,5 @@
 .salud-title-header {
 	font-family: 'Poppins', sans-serif;
-	font-style: italic;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: auto 3em 3em;
@@ -27,6 +26,8 @@
 	grid-area: title;
 	font-size: 2em;
 	padding-bottom: 0.5em;
+	text-shadow: 4px 4px black;
+	font-style: italic;
 }
 .header-experience {
 	grid-area: experience;
