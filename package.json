@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "npx serve .",
+    "start": "npx serve .",
     "publish:site": "surge ."
   },
   "repository": {
