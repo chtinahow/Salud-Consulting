@@ -3,7 +3,7 @@ const saludPageContent = () => {
 	const html = registerHtml()
 	return (props, children) => {
 		return html`
-			<article class="salud-page-content">${children}</article>
+			<article class="salud-page-content vhs-top">${children}</article>
 		`
 	}
 }

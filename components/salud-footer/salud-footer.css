@@ -1,19 +1,34 @@
 .salud-footer {
 	display: grid;
-	grid-template-columns: 1fr 2fr 8fr 1fr;
+	grid-template-columns: 1fr 5fr 200px 1fr;
 	grid-template-rows: auto;
 	grid-template-areas:
-		". logo 			 	 title ."
-		". address 		 address ."
+		". title 			 	 logo ."
+		". address 		 		logo ."
+		". phone					logo ."
 		". copywrite copywrite .";
 	row-gap: 0.5em;
 	position: relative;
 	bottom: 0;
-	max-width: 900px;
+	max-width: 1000px;
 	background-color: #153a5e;
 	z-index: 2; /* place the footer in front of the stick footer */
 	padding: 1em 1em 0 1em;
 	color: #fff;
+}
+
+@media screen and (max-width: 900px) {
+	.salud-footer {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"logo"
+			"title"
+			"address"
+			"phone"
+			"copywrite";
+		justify-items: center;
+		text-align: center;
+	}
 }
 
 .salud-footer-title {
@@ -27,4 +42,8 @@
 
 .salud-footer-copywrite {
 	grid-area: copywrite;
+}
+
+.salud-footer-phone-number {
+	grid-area: phone;
 }

@@ -1,7 +1,7 @@
 /* styles for the entire page */
 body {
 	margin: 0 auto; /* center align page content */
-	max-width: 900px; /* fix page-size to 900px */
+	max-width: 1000px; /* fix page-size to 900px */
 	min-width: 700px; /* smallest page can be (without visual errors) is 700px */
 	font-size: clamp(1em, calc(1.8em - 1.20vw), 1.8em); /* scale font-size up with smaller page */
 	box-shadow: 0 0 14px 3px #666; /* add box-shadow to left and right */

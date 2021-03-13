@@ -20,9 +20,11 @@
 
 	<!-- Dependencies -->
 	<script src="https://unpkg.com/tram-one@10/dist/tram-one.umd.js"></script>
-	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+	<script src="https://unpkg.com/contentful@8.2.0/dist/contentful.browser.min.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css@0.5.9/dist/spectre.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css@0.5.9/dist/spectre-exp.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css@0.5.9/dist/spectre-icons.min.css">
+	<link rel="stylesheet" href="https://d2v52k3cl9vedd.cloudfront.net/vhs/0.2.0/vhs.min.css">
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -93,12 +95,17 @@
 
 	<link rel="stylesheet" href="/components/salud-footer/salud-footer.css">
 	<script src="components/salud-footer/salud-footer.js"></script>
+
+	<script src="hooks/useContent.js"></script>
+
+	<script src="components/salud-loading-indicator/salud-loading-indicator.js"></script>
 </head>
 
 <body>
 	<div class="app"></div>
 	<script>
 		const { registerHtml, start } = window['tram-one']
+		const useConent = useContentHook()
 		const html = registerHtml({
 			'construction-banner': constructionBanner(),
 			'salud-sticky-nav-bar': saludStickyNavBar(),
@@ -113,8 +120,17 @@
 			'salud-page-content': saludPageContent(),
 			'salud-sticky-footer-bar': saludStickyFooterBar(),
 			'salud-footer': saludFooter(),
+			'salud-loading-indicator': saludLoadingIndicator(),
 		})
 		const home = () => {
+			const content = useConent()
+			console.log(content.copy)
+			if (!content.isLoaded) {
+				// TODO make a component
+				return html`
+					<salud-loading-indicator />
+				`
+			}
 			return html`
 					<main>
 
@@ -123,31 +139,31 @@
 						<salud-title-header />
 
 						<salud-mission-statement-banner>
-							${copy.mission_statement}
+							${content.copy.mission_statement}
 						</salud-mission-statement-banner>
 
 						<salud-page-content>
-							<!-- <construction-banner>${copy.under_construction_banner}</construction-banner> -->
-							<salud-header id="about-us">${copy.about_us_header}</salud-header>
+							<!-- <construction-banner>${content.copy.under_construction_banner}</construction-banner> -->
+							<salud-header id="about-us">${content.copy.about_us_header}</salud-header>
 							<salud-banner-graphic src="/graphics/science-in-hd-unsplash.jpg" position="30% 75%" />
 							<p>
-								${copy.description}
+								${content.copy.description}
 							</p>
-							<salud-header id="experience">${copy.experience_header}</salud-header>
+							<salud-header id="experience">${content.copy.experience_header}</salud-header>
 							<salud-banner-graphic src="/graphics/national-cancer-institute-05-unsplash.jpg" position="31% 64%"/>
-							<p>${copy.experience_intro}</p>
+							<p>${content.copy.experience_intro}</p>
 							<ul>
-								${copy.experience_items.map(item => html`<li>${item.text}</l1>`)}
+								${content.copy.experience_items.map(item => html`<li>${item.fields.label}</l1>`)}
 							</ul>
-							<salud-header>${copy.companies_header}</salud-header>
+							<salud-header>${content.copy.companies_header}</salud-header>
 							<salud-banner-graphic src="/graphics/national-cancer-institute-03-unsplash.jpg" position="31% 64%" />
-							<salud-company-logos title=${copy.company_logos_title} />
-							<salud-header id="services">${copy.services_header}</salud-header>
+							<salud-company-logos title=${content.copy.company_logos_title} />
+							<salud-header id="services">${content.copy.services_header}</salud-header>
 							<salud-banner-graphic src="/graphics/national-cancer-institute-04-unsplash.jpg" position="30% 31%"/>
 							<div style="display: flex; flex-wrap: wrap; justify-content: space-around;"> <!-- TODO: Make real component later -->
-								${copy.services_items.map(service => html`<salud-icon-item label=${service.label} icon=${service.graphic}/>`)}
+								${content.copy.services_items.map(service => html`<salud-icon-item label=${service.fields.label} icon=${service.fields.graphic}/>`)}
 							</div>
-							<salud-header id="contact-us">${copy.contact_us_header}</salud-header>
+							<salud-header id="contact-us">${content.copy.contact_us_header}</salud-header>
 							<salud-contact-form />
 						</salud-page-content>
 

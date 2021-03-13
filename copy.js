@@ -50,6 +50,7 @@ const copy = {
 	footer_address_label: 'Corporate Headquarters',
 	footer_address_street_address_1:'5457 Twin Knolls Rd suite 300',
 	footer_address_street_address_2:'Columbia, MD 21045',
+	footer_phone_number:'240-475-9048',
 	email_status: {
 		sending: 'Request is being submitted, please do not leave the page.',
 		success: 'Request was sent successfully. We will get back to you shortly.',

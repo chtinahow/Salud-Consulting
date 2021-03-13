@@ -3,7 +3,7 @@ const saludMissionStatementBanner = () => {
 	const html = registerHtml()
 	return (props, children) => {
 		return html`
-				<h2 class="salud-mission-statement-banner">
+				<h2 class="salud-mission-statement-banner vhs-top">
 					${children}
 				</h2>
 			`
