@@ -4,7 +4,9 @@ const saludMissionStatementBanner = () => {
 	return (props, children) => {
 		return html`
 				<h2 class="salud-mission-statement-banner vhs-top">
-					${children}
+					<div class="vhs-fade vhs-delay-3 vhs-duration-6">
+						${children}
+					</div>
 				</h2>
 			`
 	}
