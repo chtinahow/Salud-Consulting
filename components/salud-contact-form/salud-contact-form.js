@@ -54,7 +54,7 @@ const saludContactForm = () => {
 				try {
 					// get the list of labels for the services selected
 					const getServiceLabel = serviceValue => {
-						return content.copy.contact_us_requested_services.find(service => service.value == serviceValue).fields.label
+						return content.copy.contact_us_requested_services.find(service => service.fields.value == serviceValue).fields.label
 					}
 					const nonEmptyService = serviceValue => Boolean(serviceValue)
 					const requestedServices = fieldStore.services.value.filter(nonEmptyService).map(getServiceLabel)
