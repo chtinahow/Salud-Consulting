@@ -4,3 +4,10 @@
 	text-align: center;
 	font-variant: petite-caps;
 }
+
+@media screen and (max-width: 900px) {
+	.salud-header {
+		margin-top: 1em;
+		padding-top: 3em;
+	}
+}
