@@ -8,6 +8,7 @@ const saludLogo = () => {
 		`
 		return html`
 				<img
+					alt="Salud Consulting Logo - Go to Home Page"
 					style=${sizeStyle}
 					class="salud-logo"
 					src="../../graphics/SaludConsultingLogo.png"

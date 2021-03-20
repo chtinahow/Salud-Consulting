@@ -10,7 +10,7 @@ const saludTitleHeader = () => {
 				<a class="nav-link header-logo" href="/">
 					<salud-logo class="logo" size="200px" />
 				</a>
-				<div class="header-title">${content.copy.title}</div>
+				<h1 class="header-title">${content.copy.title}</h1>
 				<a class="nav-link header-about-us" href="#about-us">${content.copy.about_us_header}</a>
 				<a class="nav-link header-experience" href="#experience">${content.copy.experience_header}</a>
 				<a class="nav-link header-services" href="#services">${content.copy.services_header}</a>
