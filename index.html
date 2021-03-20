@@ -160,7 +160,7 @@
 							<salud-header id="services">${content.copy.services_header}</salud-header>
 							<salud-banner-graphic src="/graphics/national-cancer-institute-04-unsplash.jpg" position="30% 31%"/>
 							<div style="display: flex; flex-wrap: wrap; justify-content: space-around;"> <!-- TODO: Make real component later -->
-								${content.copy.services_items.map(service => html`<salud-icon-item label=${service.fields.label} icon=${service.fields.graphic}/>`)}
+								${content.copy.services_items.map(service => html`<salud-icon-item label=${service.fields.label} icon="fa-${service.fields.graphic}"/>`)}
 							</div>
 							<salud-header id="contact-us">${content.copy.contact_us_header}</salud-header>
 							<salud-contact-form />
